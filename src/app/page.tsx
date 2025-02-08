@@ -1,7 +1,7 @@
 export default function Home() {
   return (
     <div className="p-4">
-      <div>hello, i'm <p className="font-bold inline">joshua tighe</p></div>
+      <div>hello, i&apos;m <p className="font-bold inline">joshua tighe</p></div>
       <p>a sophomore CS student @ <a href="https://nd.edu" className="text-blue-700 hover:underline">ND</a> ☘️</p>
       <div className="p-4">
         <p>my links 🔗</p>
