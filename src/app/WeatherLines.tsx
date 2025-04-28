@@ -1,18 +1,16 @@
 import Line from '@/app/ui/Line'
 import WeatherIcon from '@/app/ui/WeatherIcon'
 
-import { Sun, CloudSun } from 'lucide-react'
-
 const WeatherLines = async () => {
   const baseUrl = `https://api.openweathermap.org/data/2.5/weather?units=metric&appid=${process.env.WEATHER_API_KEY}`
 
-  let dublin     = await fetch(`${baseUrl}&lat=${53.3498}&lon=${-6.2603}`).then(res => res.json())
-  let dublinTemp = Math.round(dublin.main.temp)
-  let dublinDesc = dublin.weather[0].description
+  const dublin     = await fetch(`${baseUrl}&lat=${53.3498}&lon=${-6.2603}`).then(res => res.json())
+  const dublinTemp = Math.round(dublin.main.temp)
+  const dublinDesc = dublin.weather[0].description
 
-  let nd         = await fetch(`${baseUrl}&lat=${41.6764}&lon=${-86.2520}`).then(res => res.json())
-  let ndTemp     = Math.round(nd.main.temp)
-  let ndDesc     = nd.weather[0].description
+  const nd         = await fetch(`${baseUrl}&lat=${41.6764}&lon=${-86.2520}`).then(res => res.json())
+  const ndTemp     = Math.round(nd.main.temp)
+  const ndDesc     = nd.weather[0].description
 
   console.log(dublin)
   console.log(nd)
