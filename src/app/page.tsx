@@ -1,7 +1,7 @@
 import Line         from '@/app/ui/Line'
 import BlankLine    from '@/app/ui/BlankLine'
 import Footer       from '@/app/ui/Footer'
-import WeatherLines from '@/app/WeatherLines'
+import WeatherLines from '@/app/ui/WeatherLines'
 
 import Link         from 'next/link'
 import { Github }   from 'lucide-react'
