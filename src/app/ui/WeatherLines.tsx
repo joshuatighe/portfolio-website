@@ -1,5 +1,5 @@
 import Line from '@/app/ui/Line'
-import WeatherIcon from '@/app/ui/WeatherIcon'
+import WeatherIconHandler from '@/app/ui/WeatherIconHandler'
 
 const WeatherLines = async () => {
   const baseUrl = `https://api.openweathermap.org/data/2.5/weather?units=metric&appid=${process.env.WEATHER_API_KEY}`
@@ -11,7 +11,7 @@ const WeatherLines = async () => {
       const data = await res.json()
       return {
         temp: Math.round(data.main?.temp) || 0,
-        desc: data.weather?.[0]?.description || 'n/a',
+        desc: data.weather?.[0]?.main.toLowerCase() || 'n/a',
       }
     } catch (err) {
       console.error(err)
@@ -28,14 +28,14 @@ const WeatherLines = async () => {
         <div className="text-[#928374]">
           // <span className="italic font-extrabold">
             dublin:
-          </span>      <WeatherIcon desc={dublin.desc} /> {dublin.temp}C, {dublin.desc}
+          </span>      <WeatherIconHandler desc={dublin.desc} /> {dublin.temp}C, {dublin.desc}
         </div>
       </Line>
       <Line number={'9'} status={'none'}>
         <div className="text-[#928374]">
           // <span className="italic font-extrabold">
             notre dame:
-          </span>  <WeatherIcon desc={nd.desc} /> {nd.temp}C, {nd.desc}
+          </span>  <WeatherIconHandler desc={nd.desc} /> {nd.temp}C, {nd.desc}
         </div>
       </Line>
     </>
