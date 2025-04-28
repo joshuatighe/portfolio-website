@@ -4,8 +4,9 @@ import Line      from '@/app/ui/Line'
 import BlankLine from '@/app/ui/BlankLine'
 import Footer    from '@/app/ui/Footer'
 
-import Link from 'next/link'
-import { Github } from 'lucide-react'
+import { useState } from 'react'
+import Link         from 'next/link'
+import { Github }   from 'lucide-react'
 
 const Home = () => {
   return (
