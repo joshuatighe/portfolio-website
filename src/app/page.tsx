@@ -12,7 +12,7 @@ const Home = () => {
     <div>
       <main className="flex flex-col">
         <Line number={'1'} status={'none'}>
-          <div className="text-[#928374]">/* <span className="hover:underline hover:font-bold">joshuatighe.ie</span> */</div>
+          <div className="text-[#928374]">/* <span className="hover:underline hover:font-bold">joshuatighe.dev</span> */</div>
         </Line>
 
         <Line number={'2'} status={'none'}>
