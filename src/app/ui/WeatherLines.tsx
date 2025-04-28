@@ -4,13 +4,23 @@ import WeatherIcon from '@/app/ui/WeatherIcon'
 const WeatherLines = async () => {
   const baseUrl = `https://api.openweathermap.org/data/2.5/weather?units=metric&appid=${process.env.WEATHER_API_KEY}`
 
-  const dublin     = await fetch(`${baseUrl}&lat=${53.3498}&lon=${-6.2603}`).then(res => res.json())
-  const dublinTemp = await Math.round(dublin.main.temp)
-  const dublinDesc = await dublin.weather[0].description
+  const fetchWeather = async (lat: number, lon: number) => {
+    try {
+      const res = await fetch(`${baseUrl}&lat=${lat}&lon=${lon}`)
+      if (!res.ok) throw new Error('weather fetch failed')
+      const data = await res.json()
+      return {
+        temp: Math.round(data.main?.temp) || 0,
+        desc: data.weather?.[0]?.description || 'n/a',
+      }
+    } catch (err) {
+      console.error(err)
+      return { temp: 0, desc: 'n/a', }
+    }
+  }
 
-  const nd         = await fetch(`${baseUrl}&lat=${41.6764}&lon=${-86.2520}`).then(res => res.json())
-  const ndTemp     = await Math.round(nd.main.temp)
-  const ndDesc     = await nd.weather[0].description
+  const dublin = await fetchWeather(53.3498, -6.2603)
+  const nd     = await fetchWeather(41.6764, -86.2520)
 
   return (
     <>
@@ -18,14 +28,14 @@ const WeatherLines = async () => {
         <div className="text-[#928374]">
           // <span className="italic font-extrabold">
             dublin:
-          </span>      <WeatherIcon desc={dublinDesc} /> {dublinTemp}C, {dublinDesc}
+          </span>      <WeatherIcon desc={dublin.desc} /> {dublin.temp}C, {dublin.desc}
         </div>
       </Line>
       <Line number={'9'} status={'none'}>
         <div className="text-[#928374]">
           // <span className="italic font-extrabold">
             notre dame:
-          </span>  <WeatherIcon desc={ndDesc} /> {ndTemp}C, {ndDesc}
+          </span>  <WeatherIcon desc={nd.desc} /> {nd.temp}C, {nd.desc}
         </div>
       </Line>
     </>
