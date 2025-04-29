@@ -1,8 +1,15 @@
+'use client'
+
+import { useEffect, useState } from 'react'
+
 import Line from '@/app/ui/Line'
 import WeatherIconHandler from '@/app/ui/WeatherIconHandler'
 
-const WeatherLines = async () => {
-  const baseUrl = `https://api.openweathermap.org/data/2.5/weather?units=metric&appid=${process.env.WEATHER_API_KEY}`
+const WeatherLines = () => {
+  const [dublin, setDublin] = useState({ temp: 0, desc: 'n/a' })
+  const [nd, setNd] = useState({ temp: 0, desc: 'n/a' })
+
+  const baseUrl = `https://api.openweathermap.org/data/2.5/weather?units=metric&appid=${process.env.NEXT_PUBLIC_WEATHER_API_KEY}`
 
   const fetchWeather = async (lat: number, lon: number) => {
     try {
@@ -19,8 +26,16 @@ const WeatherLines = async () => {
     }
   }
 
-  const dublin = await fetchWeather(53.3498, -6.2603)
-  const nd     = await fetchWeather(41.6764, -86.2520)
+  useEffect(() => {
+    const fetchData = async () => {
+      const currentDublinWeather = await fetchWeather(53.3498, -6.2603)
+      const currentNdWeather = await fetchWeather(41.6764, -86.2520) 
+      setDublin(currentDublinWeather)
+      setNd(currentNdWeather)
+    }
+
+    fetchData()
+  }, [])
 
   return (
     <>
